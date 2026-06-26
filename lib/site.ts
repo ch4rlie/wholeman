@@ -35,6 +35,7 @@ export const siteConfig = {
   social: [
     { label: "Spotify", href: "https://open.spotify.com/show/2Zmk6EmhKMF64cBc77Fizr" },
     { label: "Apple Podcasts", href: "https://podcasts.apple.com/us/podcast/wholeman-podcast/id1861302139" },
+    { label: "RSS", href: "https://anchor.fm/s/10bb68134/podcast/rss" },
     { label: "Instagram", href: "#" },
   ],
 } as const;
