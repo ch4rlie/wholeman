@@ -4,7 +4,7 @@ import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/ui/Container";
 import { Coaching } from "@/components/sections/Coaching";
 
-export const metadata: Metadata = { title: "Coaching — WholeMan" };
+export const metadata: Metadata = { title: "Coaching" };
 
 export default function CoachingPage() {
   return (

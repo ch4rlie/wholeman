@@ -17,7 +17,7 @@ const sans = Inter({
 });
 
 const SITE_URL = "https://wholeman.org";
-const TITLE = "WholeMan — Presence over performance";
+const TITLE = "WholeMan | Presence over performance";
 const DESCRIPTION =
   "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Private coaching with Ccowl and the WholeMan Podcast.";
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s · WholeMan",
+    template: "WholeMan | %s",
   },
   description: DESCRIPTION,
   applicationName: "WholeMan",

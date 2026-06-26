@@ -6,7 +6,7 @@ import { EpisodeCard } from "@/components/podcast/EpisodeCard";
 import { getPodcast } from "@/lib/podcast";
 
 export const revalidate = 3600;
-export const metadata: Metadata = { title: "Podcast — WholeMan" };
+export const metadata: Metadata = { title: "Podcast" };
 
 export default async function PodcastIndex() {
   const podcast = await getPodcast();
