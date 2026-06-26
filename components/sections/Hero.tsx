@@ -15,14 +15,8 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink/95" />
       <div className="relative z-10 flex flex-col items-center">
-        <Image
-          src="/brand/wholeman-logo.jpg"
-          alt="WholeMan — I Am"
-          width={180}
-          height={180}
-          priority
-          className="mb-6 h-40 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.7)] invert md:h-44"
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand/wholeman-logo.svg" alt="WholeMan — I Am" className="mb-6 h-40 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.7)] invert md:h-44" />
         <p className="mb-4 font-display text-2xl italic text-bone md:text-3xl">{siteConfig.hero.tagline}</p>
         <p className="max-w-2xl font-sans text-base leading-relaxed text-muted">{siteConfig.hero.mission}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
