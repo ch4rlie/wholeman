@@ -13,7 +13,7 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img src={episode.image} alt="" className="h-14 w-14 flex-none rounded-md object-cover" />
       ) : (
-        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-copper text-xs text-ink">▶</span>
+        <span className="flex h-14 w-14 flex-none items-center justify-center rounded-md bg-copper text-base text-ink">▶</span>
       )}
       <span className="min-w-0">
         <span className="font-sans text-[10px] uppercase tracking-[0.15em] text-faint">
