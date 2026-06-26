@@ -53,6 +53,7 @@ export function parsePodcastFeed(xml: string): Podcast {
     const pubRaw = text(it.pubDate);
     const pubDate = pubRaw ? new Date(pubRaw).toISOString() : "";
     const enclosure = it.enclosure as Record<string, string> | undefined;
+    const itemImg = it["itunes:image"] as Record<string, string> | undefined;
     const epNum = text(it["itunes:episode"]);
     return {
       id: text(it.guid) || `${i}`,
@@ -64,6 +65,7 @@ export function parsePodcastFeed(xml: string): Podcast {
       durationSeconds,
       durationLabel: formatDuration(durationSeconds),
       audioUrl: enclosure?.["@_url"] ?? null,
+      image: itemImg?.["@_href"] ?? null,
       episodeNumber: epNum ? parseInt(epNum, 10) : null,
       link: text(it.link),
     };

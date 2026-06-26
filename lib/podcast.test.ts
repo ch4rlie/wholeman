@@ -51,6 +51,7 @@ describe("parsePodcastFeed", () => {
       <pubDate>Wed, 17 Jun 2026 12:00:00 GMT</pubDate>
       <itunes:duration>1:37:25</itunes:duration>
       <itunes:episode>21</itunes:episode>
+      <itunes:image href="https://img/ep21.jpg"/>
       <enclosure url="https://audio/21.mp3" type="audio/mpeg"/>
       <guid>guid-21</guid>
       <link>https://show/21</link>
@@ -84,6 +85,11 @@ describe("parsePodcastFeed", () => {
   it("tolerates missing enclosure/link", () => {
     const p = parsePodcastFeed(xml);
     expect(p.episodes[1].audioUrl).toBeNull();
+  });
+  it("parses per-episode image", () => {
+    const p = parsePodcastFeed(xml);
+    expect(p.episodes[0].image).toBe("https://img/ep21.jpg");
+    expect(p.episodes[1].image).toBeNull();
   });
   it("handles a single-item feed (object, not array)", () => {
     const single = `<?xml version="1.0"?>

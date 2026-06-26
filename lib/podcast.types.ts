@@ -8,6 +8,7 @@ export interface Episode {
   durationSeconds: number;
   durationLabel: string; // "1h 37m"
   audioUrl: string | null;
+  image: string | null;
   episodeNumber: number | null;
   link: string;
 }
