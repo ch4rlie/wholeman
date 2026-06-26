@@ -7,7 +7,7 @@ export function Hero() {
     <section className="relative flex min-h-[88vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
       <Image
         src="/photos/ty-hero.jpg"
-        alt="Colorado mountains at sunset"
+        alt=""
         fill
         priority
         sizes="100vw"
@@ -17,7 +17,7 @@ export function Hero() {
       <div className="relative z-10 flex flex-col items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/brand/wholeman-logo.svg" alt="WholeMan — I Am" className="mb-6 h-40 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.7)] invert md:h-44" />
-        <p className="mb-4 font-display text-2xl italic text-bone md:text-3xl">{siteConfig.hero.tagline}</p>
+        <h1 className="mb-4 font-display text-2xl italic font-normal text-bone md:text-3xl">{siteConfig.hero.tagline}</h1>
         <p className="max-w-2xl font-sans text-base leading-relaxed text-muted">{siteConfig.hero.mission}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <BookCall className="rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110">

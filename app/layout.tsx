@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
     url: "https://wholeman.org",
     siteName: "WholeMan",
-    images: [{ url: "/photos/ty-hero.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/photos/ty-hero.jpg" }],
     type: "website",
   },
 };
