@@ -6,12 +6,12 @@ export function Hero() {
   return (
     <section className="relative flex min-h-[88vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
       <Image
-        src="/photos/ty-hero.jpg"
+        src="/photos/hero-colorado.jpg"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover object-top"
+        className="object-cover object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/50 to-ink/95" />
       <div className="relative z-10 flex flex-col items-center">

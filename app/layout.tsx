@@ -52,13 +52,13 @@ export const metadata: Metadata = {
     siteName: "WholeMan",
     title: TITLE,
     description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
-    images: [{ url: "/photos/ty-hero.jpg", alt: "WholeMan" }],
+    images: [{ url: "/photos/hero-colorado.jpg", alt: "WholeMan" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
-    images: ["/photos/ty-hero.jpg"],
+    images: ["/photos/hero-colorado.jpg"],
   },
   robots: {
     index: true,
