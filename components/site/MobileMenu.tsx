@@ -31,7 +31,7 @@ export function MobileMenu() {
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-ink2/98 backdrop-blur">
+        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-ink2 shadow-2xl shadow-black/50">
           <div className="mx-auto flex max-w-6xl flex-col px-6 py-3">
             {siteConfig.nav.map((n) => (
               <Link
