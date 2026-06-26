@@ -9,7 +9,12 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
       rel="noopener"
       className="flex items-center gap-3 rounded-lg border border-cardline bg-white/[0.02] p-3 transition hover:border-copper/60"
     >
-      <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-copper text-xs text-ink">▶</span>
+      {episode.image ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={episode.image} alt="" className="h-14 w-14 flex-none rounded-md object-cover" />
+      ) : (
+        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-copper text-xs text-ink">▶</span>
+      )}
       <span className="min-w-0">
         <span className="font-sans text-[10px] uppercase tracking-[0.15em] text-faint">
           {episode.episodeNumber ? `Ep ${episode.episodeNumber}` : "Episode"}

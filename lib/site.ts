@@ -2,9 +2,9 @@ export const siteConfig = {
   calendlyUrl:
     process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/wholeman/intro-call",
   nav: [
-    { label: "Mission", href: "#call" },
-    { label: "Coaching", href: "#coaching" },
-    { label: "Podcast", href: "#podcast" },
+    { label: "Mission", href: "/#call" },
+    { label: "Coaching", href: "/coaching" },
+    { label: "Podcast", href: "/podcast" },
   ],
   hero: {
     tagline: "Presence over performance.",

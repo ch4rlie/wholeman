@@ -17,7 +17,7 @@ export function PodcastSection({ podcast }: { podcast: Podcast }) {
           <SectionLabel icon={<span aria-hidden>●</span>}>
             The WholeMan Podcast
             <span className="ml-2 normal-case tracking-normal text-faint">
-              · live from his feed{podcast.episodes.length ? ` · ${podcast.episodes.length} episodes` : ""}
+              · live feed{podcast.episodes.length ? ` · ${podcast.episodes.length} episodes` : ""}
             </span>
           </SectionLabel>
           <h2 className="font-display text-3xl font-normal md:text-4xl">

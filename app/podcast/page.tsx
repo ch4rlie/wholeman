@@ -19,7 +19,7 @@ export default async function PodcastIndex() {
           {podcast.description && (
             <p className="mt-3 max-w-3xl font-display text-lg italic text-faint">{podcast.description}</p>
           )}
-          <div className="mt-8 grid gap-3 md:grid-cols-2">
+          <div className="mt-8 flex flex-col gap-3 max-w-3xl">
             {podcast.episodes.map((ep) => (
               <EpisodeCard key={ep.id} episode={ep} />
             ))}

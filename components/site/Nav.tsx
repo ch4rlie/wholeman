@@ -12,7 +12,7 @@ export function Nav() {
         </Link>
         <div className="hidden gap-7 font-sans text-xs uppercase tracking-[0.15em] text-muted md:flex">
           {siteConfig.nav.map((n) => (
-            <a key={n.href} href={n.href} className="transition hover:text-bone">{n.label}</a>
+            <Link key={n.href} href={n.href} className="transition hover:text-bone">{n.label}</Link>
           ))}
         </div>
         <BookCall className="rounded-md bg-copper px-4 py-2 font-sans text-xs font-semibold tracking-wide text-ink transition hover:brightness-110">

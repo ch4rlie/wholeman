@@ -37,7 +37,7 @@ export function Coaching() {
           <BookCall className="inline-block rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110">
             Book your free intro call →
           </BookCall>
-          <p className="mt-3 font-sans text-[11px] text-faint">Opens his calendar · 30 minutes · no pressure</p>
+          <p className="mt-3 font-sans text-[11px] text-faint">Opens calendar · 30 minutes · no pressure</p>
         </Reveal>
       </div>
     </section>

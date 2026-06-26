@@ -3,11 +3,12 @@ import type { Episode } from "@/lib/podcast.types";
 function escapeRegExp(s: string) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
 export function FeaturedEpisode({ episode, coverImage }: { episode: Episode; coverImage: string | null }) {
+  const cover = episode.image ?? coverImage;
   return (
     <div className="flex flex-1 overflow-hidden rounded-xl border border-cardline bg-black/40">
-      {coverImage && (
+      {cover && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={coverImage} alt="" className="hidden w-36 flex-none object-cover sm:block" />
+        <img src={cover} alt="" className="hidden w-36 flex-none object-cover sm:block" />
       )}
       <div className="p-5">
         <span className="font-sans text-[10px] uppercase tracking-[0.15em] text-copperlight">
