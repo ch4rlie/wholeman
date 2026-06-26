@@ -1,7 +1,27 @@
-export default function Home() {
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { Hero } from "@/components/sections/Hero";
+import { TheCall } from "@/components/sections/TheCall";
+import { TheWork } from "@/components/sections/TheWork";
+import { Coaching } from "@/components/sections/Coaching";
+import { PodcastSection } from "@/components/sections/PodcastSection";
+import { getPodcast } from "@/lib/podcast";
+
+export const revalidate = 3600;
+
+export default async function Home() {
+  const podcast = await getPodcast();
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="font-display text-5xl text-bone">WholeMan</h1>
-    </main>
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <TheCall />
+        <TheWork />
+        <Coaching />
+        <PodcastSection podcast={podcast} />
+      </main>
+      <Footer />
+    </>
   );
 }

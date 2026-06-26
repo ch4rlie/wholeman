@@ -42,7 +42,7 @@ function text(v: unknown): string {
 }
 
 export function parsePodcastFeed(xml: string): Podcast {
-  const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_" });
+  const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "@_", processEntities: false });
   const data = parser.parse(xml);
   const channel = data?.rss?.channel ?? {};
   const rawItems = channel.item ? (Array.isArray(channel.item) ? channel.item : [channel.item]) : [];
