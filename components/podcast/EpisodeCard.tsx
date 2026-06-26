@@ -1,27 +1,41 @@
 import type { Episode } from "@/lib/podcast.types";
 
-export function EpisodeCard({ episode }: { episode: Episode }) {
+export function EpisodeCard({
+  episode,
+  size = "default",
+}: {
+  episode: Episode;
+  size?: "default" | "large";
+}) {
   const href = episode.link || "#";
+  const large = size === "large";
+  const thumb = large ? "h-24 w-24" : "h-14 w-14";
+  const wrap = large ? "gap-5 p-4" : "gap-3 p-3";
+  const title = large ? "text-lg md:text-xl" : "text-[15px]";
+  const meta = large ? "text-sm" : "text-xs";
+
   return (
     <a
       href={href}
       target="_blank"
-      rel="noopener"
-      className="flex items-center gap-3 rounded-lg border border-cardline bg-white/[0.02] p-3 transition hover:border-copper/60"
+      rel="noopener noreferrer"
+      className={`flex items-center ${wrap} rounded-lg border border-cardline bg-white/[0.02] transition hover:border-copper/60`}
     >
       {episode.image ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={episode.image} alt="" className="h-14 w-14 flex-none rounded-md object-cover" />
+        <img src={episode.image} alt="" className={`${thumb} flex-none rounded-md object-cover`} />
       ) : (
-        <span className="flex h-14 w-14 flex-none items-center justify-center rounded-md bg-copper text-base text-ink">▶</span>
+        <span className={`flex ${thumb} flex-none items-center justify-center rounded-md bg-copper text-base text-ink`}>
+          ▶
+        </span>
       )}
       <span className="min-w-0">
-        <span className="font-sans text-[10px] uppercase tracking-[0.15em] text-faint">
-          {episode.episodeNumber ? `Ep ${episode.episodeNumber}` : "Episode"}
+        <span className={`block font-display ${title} leading-snug text-bone line-clamp-2`}>
+          {episode.title}
         </span>
-        <span className="block truncate font-display text-[15px] text-bone">{episode.title}</span>
-        <span className="font-sans text-[11px] text-faint">
-          {episode.pubDateLabel}{episode.durationLabel ? ` · ${episode.durationLabel}` : ""}
+        <span className={`mt-1 block font-sans ${meta} text-muted`}>
+          {episode.pubDateLabel}
+          {episode.durationLabel ? ` · ${episode.durationLabel}` : ""}
         </span>
       </span>
     </a>
