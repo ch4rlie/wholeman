@@ -1,0 +1,21 @@
+# Visual companion / brainstorm scratch (not part of the site)
+.superpowers/
+
+# Dependencies & build output
+node_modules/
+.next/
+out/
+dist/
+.vercel/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*Zone.Identifier
+.idea/
+.vscode/
