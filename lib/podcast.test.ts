@@ -18,6 +18,7 @@ describe("formatDuration", () => {
   it("formats hours and minutes", () => { expect(formatDuration(5845)).toBe("1h 37m"); });
   it("formats minutes only", () => { expect(formatDuration(2830)).toBe("47m"); });
   it("handles zero", () => { expect(formatDuration(0)).toBe("0m"); });
+  it("does not overflow minutes to 60", () => { expect(formatDuration(3599)).toBe("59m"); });
 });
 
 describe("formatDate", () => {
@@ -83,5 +84,21 @@ describe("parsePodcastFeed", () => {
   it("tolerates missing enclosure/link", () => {
     const p = parsePodcastFeed(xml);
     expect(p.episodes[1].audioUrl).toBeNull();
+  });
+  it("handles a single-item feed (object, not array)", () => {
+    const single = `<?xml version="1.0"?>
+  <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"><channel>
+    <title>WholeMan Podcast</title>
+    <item>
+      <title>Solo episode</title>
+      <pubDate>Wed, 01 Jan 2025 12:00:00 GMT</pubDate>
+      <itunes:duration>600</itunes:duration>
+      <guid>solo-1</guid>
+    </item>
+  </channel></rss>`;
+    const p = parsePodcastFeed(single);
+    expect(p.episodes).toHaveLength(1);
+    expect(p.episodes[0].title).toBe("Solo episode");
+    expect(p.episodes[0].durationLabel).toBe("10m");
   });
 });
