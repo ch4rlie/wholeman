@@ -16,9 +16,18 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://wholeman.org"),
   title: "WholeMan — Presence over performance",
   description:
-    "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration.",
+    "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Private coaching and the WholeMan Podcast.",
+  openGraph: {
+    title: "WholeMan — Presence over performance",
+    description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
+    url: "https://wholeman.org",
+    siteName: "WholeMan",
+    images: [{ url: "/photos/ty-hero.jpg", width: 1200, height: 630 }],
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
