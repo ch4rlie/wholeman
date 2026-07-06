@@ -28,7 +28,7 @@ export function SurvivalStrategies() {
           <div className="mt-10">
             <Accordion
               items={strategies.map((s) => ({
-                id: s.name,
+                id: s.name.toLowerCase().replace(/\s+/g, "-"),
                 title: s.name,
                 content: (
                   <div className="space-y-4">
