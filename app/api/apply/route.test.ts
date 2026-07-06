@@ -62,8 +62,42 @@ describe("POST /api/apply", () => {
   });
 
   it("returns 502 when the email send fails", async () => {
-    sendMock.mockRejectedValueOnce(new Error("boom"));
-    const res = await POST(req(valid));
-    expect(res.status).toBe(502);
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      sendMock.mockRejectedValueOnce(new Error("boom"));
+      const res = await POST(req(valid));
+      expect(res.status).toBe(502);
+    } finally {
+      errorSpy.mockRestore();
+    }
+  });
+
+  it("returns 200 with soft-success in dev when email is not configured", async () => {
+    configuredMock.mockReturnValue(false);
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+    try {
+      const res = await POST(req(valid));
+      expect(res.status).toBe(200);
+      const data = await res.json();
+      expect(data.ok).toBe(true);
+      expect(sendMock).not.toHaveBeenCalled();
+    } finally {
+      warnSpy.mockRestore();
+    }
+  });
+
+  it("returns 502 in production when email is not configured", async () => {
+    configuredMock.mockReturnValue(false);
+    vi.stubEnv("NODE_ENV", "production");
+    try {
+      const res = await POST(req(valid));
+      expect(res.status).toBe(502);
+      const data = await res.json();
+      expect(data.ok).toBe(false);
+      expect(data.error).toBe("send_failed");
+      expect(sendMock).not.toHaveBeenCalled();
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 });
