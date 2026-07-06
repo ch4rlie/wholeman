@@ -5,7 +5,7 @@ import { BookCall } from "@/components/ui/BookCall";
 import { siteConfig } from "@/lib/site";
 
 export function Coaching() {
-  const { heading, body, perks } = siteConfig.coaching;
+  const { label, heading, body, perks, photoCaption } = siteConfig.coaching;
   return (
     <section
       id="coaching"
@@ -23,12 +23,12 @@ export function Coaching() {
                 className="object-cover"
               />
               <span className="absolute bottom-4 left-4 rounded-md bg-ink/60 px-2.5 py-1.5 font-sans text-[10px] uppercase tracking-wider text-copperlight">
-                Ccowl · founder
+                {photoCaption}
               </span>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mb-4 font-sans text-[11px] uppercase tracking-label text-copper">Private coaching with Ccowl</p>
+            <p className="mb-4 font-sans text-[11px] uppercase tracking-label text-copper">{label}</p>
             <h2 className="font-display text-3xl font-normal md:text-4xl">
               {heading.includes("with a guide") ? (
                 <>

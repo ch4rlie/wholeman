@@ -16,10 +16,10 @@ export default function CoachingPage() {
           <Container>
             <p className="mb-4 font-sans text-[11px] uppercase tracking-label text-copper">Private coaching</p>
             <h1 className="font-display text-4xl font-normal md:text-5xl">
-              Private coaching with Ccowl
+              Private coaching with Charlie &amp; Ccowl
             </h1>
             <p className="mt-4 max-w-2xl font-sans text-[15px] leading-relaxed text-muted">
-              Direct, embodied 1:1 work to help you stop performing and come home to yourself.
+              Direct, embodied 1:1 work with either of us to help you stop performing and come home to yourself.
             </p>
           </Container>
         </section>
