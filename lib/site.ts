@@ -103,6 +103,8 @@ export const siteConfig = {
   },
   circles: {
     headline: "You were never meant to carry it alone.",
+    intro:
+      "WholeMan circles are small groups of men who tell the truth, own their lives, and have each other's backs. It starts with one honest conversation.",
     header: "Go deeper: join a circle.",
     body:
       "A circle is a small group of men (6 to 8) who meet regularly with a trained facilitator. Same men, every session. That's where the real trust and accountability get built. This is where the work goes from \"a good call\" to a brotherhood that has your back week after week.",

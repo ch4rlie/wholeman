@@ -28,8 +28,7 @@ export default function CirclesPage() {
               <span className="italic text-copperlight">{siteConfig.circles.headline}</span>
             </h1>
             <p className="mt-4 max-w-2xl font-sans text-[15px] leading-relaxed text-muted">
-              WholeMan circles are small groups of men who tell the truth, own their lives, and have
-              each other&apos;s backs. It starts with one honest conversation.
+              {siteConfig.circles.intro}
             </p>
           </Container>
         </section>

@@ -1,11 +1,20 @@
 import { z } from "zod";
 
 export const applySchema = z.object({
-  name: z.string().min(1, "Your name is required."),
-  email: z.string().email("Enter a valid email."),
-  drawingIn: z.string().min(1, "Tell us what's drawing you in."),
-  availability: z.string().min(1, "Let us know your availability."),
-  priorExperience: z.string().optional().default(""),
+  name: z.string().min(1, "Your name is required.").max(200, "Please keep your name under 200 characters."),
+  email: z
+    .string()
+    .email("Enter a valid email.")
+    .max(254, "Please use a shorter email address."),
+  drawingIn: z
+    .string()
+    .min(1, "Tell us what's drawing you in.")
+    .max(5000, "Please keep this under 5000 characters."),
+  availability: z
+    .string()
+    .min(1, "Let us know your availability.")
+    .max(1000, "Please keep this under 1000 characters."),
+  priorExperience: z.string().max(5000, "Please keep this under 5000 characters.").optional().default(""),
   // Zod v4: `errorMap` is deprecated; use `error` (string shorthand) instead.
   agreement: z.literal(true, { error: "Please accept the agreement." }),
 });

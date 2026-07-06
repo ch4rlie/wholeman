@@ -46,4 +46,15 @@ describe("validateApply", () => {
     expect(r.ok).toBe(true);
     if (r.ok) expect(r.value.priorExperience).toBe("");
   });
+
+  it("rejects an over-limit field with a per-field error", () => {
+    const r = validateApply({ ...valid, drawingIn: "x".repeat(5001) });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.errors.drawingIn).toBeTruthy();
+  });
+
+  it("accepts a field at exactly the max length", () => {
+    const r = validateApply({ ...valid, drawingIn: "x".repeat(5000) });
+    expect(r.ok).toBe(true);
+  });
 });
