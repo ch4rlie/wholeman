@@ -11,21 +11,30 @@ const items = [
 describe("Accordion", () => {
   it("renders all titles with panels closed", () => {
     render(<Accordion items={items} />);
-    expect(screen.getByRole("button", { name: /First title/ })).toHaveAttribute(
-      "aria-expanded",
-      "false"
-    );
-    expect(screen.queryByText("First content")).not.toBeInTheDocument();
+    const firstButton = screen.getByRole("button", { name: /First title/ });
+    expect(firstButton).toHaveAttribute("aria-expanded", "false");
+    // Panel is in document but hidden when closed
+    expect(screen.getByText("First content")).not.toBeVisible();
+    // ARIA controls reference must exist in document even when collapsed
+    expect(document.getElementById("accordion-panel-a")).toBeInTheDocument();
   });
 
   it("opens and closes a panel on click, allowing multiple open", async () => {
     const user = userEvent.setup();
     render(<Accordion items={items} />);
+
+    // Open first panel
     await user.click(screen.getByRole("button", { name: /First title/ }));
+    expect(screen.getByText("First content")).toBeVisible();
+
+    // Open second panel while first is still open
     await user.click(screen.getByRole("button", { name: /Second title/ }));
-    expect(screen.getByText("First content")).toBeInTheDocument();
-    expect(screen.getByText("Second content")).toBeInTheDocument();
+    expect(screen.getByText("First content")).toBeVisible();
+    expect(screen.getByText("Second content")).toBeVisible();
+
+    // Close first panel, second should remain visible
     await user.click(screen.getByRole("button", { name: /First title/ }));
-    expect(screen.queryByText("First content")).not.toBeInTheDocument();
+    expect(screen.getByText("First content")).not.toBeVisible();
+    expect(screen.getByText("Second content")).toBeVisible();
   });
 });

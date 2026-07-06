@@ -41,11 +41,9 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
                 +
               </span>
             </button>
-            {isOpen && (
-              <div id={`accordion-panel-${item.id}`} className="pb-6">
-                {item.content}
-              </div>
-            )}
+            <div id={`accordion-panel-${item.id}`} hidden={!isOpen} className="pb-6">
+              {item.content}
+            </div>
           </div>
         );
       })}
