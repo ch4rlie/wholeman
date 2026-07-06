@@ -1,5 +1,4 @@
 import { siteConfig } from "@/lib/site";
-import { BookCall } from "@/components/ui/BookCall";
 import { BrandLink } from "@/components/site/BrandLink";
 import { MobileMenu } from "@/components/site/MobileMenu";
 import Link from "next/link";
@@ -21,9 +20,14 @@ export function Nav() {
           ))}
         </div>
 
-        <BookCall className="hidden rounded-md bg-copper px-4 py-2 font-sans text-xs font-semibold tracking-wide text-ink transition hover:brightness-110 md:inline-block">
-          Book a call →
-        </BookCall>
+        <a
+          href={siteConfig.lumaUrl}
+          target="_blank"
+          rel="noopener"
+          className="hidden rounded-md bg-copper px-4 py-2 font-sans text-xs font-semibold tracking-wide text-ink transition hover:brightness-110 md:inline-block"
+        >
+          Join the call →
+        </a>
 
         <MobileMenu />
       </nav>
