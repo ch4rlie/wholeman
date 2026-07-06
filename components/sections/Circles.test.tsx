@@ -6,7 +6,9 @@ import { siteConfig } from "@/lib/site";
 describe("Circles section", () => {
   it("renders the headline and both offers", () => {
     render(<Circles />);
-    expect(screen.getByText(/never meant to carry it alone/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /a brotherhood that has your back\./i })
+    ).toBeInTheDocument();
     expect(screen.getByText(siteConfig.brotherhoodCall.header)).toBeInTheDocument();
     expect(screen.getByText(siteConfig.circles.header)).toBeInTheDocument();
   });

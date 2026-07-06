@@ -12,7 +12,7 @@ export const siteConfig = {
     { label: "Podcast", href: "/podcast" },
   ],
   hero: {
-    tagline: "Presence over performance.",
+    tagline: "You were never meant to carry it alone.",
     mission:
       "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration.",
     primaryCta: "Join the free brotherhood call",
@@ -102,7 +102,7 @@ export const siteConfig = {
     where: "Zoom (link after you RSVP)",
   },
   circles: {
-    headline: "You were never meant to carry it alone.",
+    headline: "A brotherhood that has your back.",
     intro:
       "WholeMan circles are small groups of men who tell the truth, own their lives, and have each other's backs. It starts with one honest conversation.",
     header: "Go deeper: join a circle.",

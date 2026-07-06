@@ -8,6 +8,7 @@ import { CircleOffer } from "@/components/circles/CircleOffer";
 import { Agreements } from "@/components/circles/Agreements";
 import { WhoFor } from "@/components/circles/WhoFor";
 import { CirclesFaq } from "@/components/circles/CirclesFaq";
+import { EmberBackground } from "@/components/ui/EmberBackground";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -21,8 +22,9 @@ export default function CirclesPage() {
     <>
       <Nav />
       <main>
-        <section className="bg-ink py-16 md:py-24">
-          <Container>
+        <section className="relative isolate overflow-hidden py-16 md:py-24">
+          <EmberBackground />
+          <Container className="relative z-10">
             <p className="mb-4 font-sans text-[11px] uppercase tracking-label text-copper">Men&apos;s circles</p>
             <h1 className="max-w-3xl font-display text-4xl font-normal md:text-5xl">
               <span className="italic text-copperlight">{siteConfig.circles.headline}</span>

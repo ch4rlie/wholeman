@@ -2,13 +2,15 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { EmberBackground } from "@/components/ui/EmberBackground";
 import { siteConfig } from "@/lib/site";
 
 export function Circles() {
   const { circles, brotherhoodCall, nextCall, lumaUrl } = siteConfig;
   return (
-    <section id="circles" className="border-t border-white/5 bg-gradient-to-b from-[#12100c] to-ink py-16 md:py-24">
-      <Container>
+    <section id="circles" className="relative isolate overflow-hidden border-t border-white/5 py-16 md:py-24">
+      <EmberBackground />
+      <Container className="relative z-10">
         <Reveal>
           <SectionLabel icon={<span aria-hidden>○</span>}>The brotherhood</SectionLabel>
           <h2 className="max-w-3xl font-display text-3xl font-normal md:text-4xl">
