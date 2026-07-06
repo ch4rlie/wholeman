@@ -10,6 +10,9 @@ export function Footer() {
           <a key={s.label} href={s.href} className="transition hover:text-bone">{s.label}</a>
         ))}
       </div>
+      <p className="mx-auto mb-4 max-w-2xl font-sans text-xs leading-relaxed text-faint">
+        {siteConfig.disclaimer}
+      </p>
       <p className="font-sans text-xs text-faint">© WholeMan {new Date().getFullYear()} · Presence over performance.</p>
     </footer>
   );

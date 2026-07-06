@@ -19,7 +19,7 @@ const sans = Inter({
 const SITE_URL = "https://wholeman.org";
 const TITLE = "WholeMan | Presence over performance";
 const DESCRIPTION =
-  "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Private coaching with Ccowl and the WholeMan Podcast.";
+  "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Men's circles, a free monthly brotherhood call, private coaching, and the WholeMan Podcast.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,8 +40,12 @@ export const metadata: Metadata = {
     "WholeMan Podcast",
     "men's recovery",
     "authenticity",
+    "men's circles",
+    "brotherhood",
+    "men's group",
+    "Charlie Grove",
   ],
-  authors: [{ name: "Ccowl" }],
+  authors: [{ name: "Ccowl" }, { name: "Charlie Grove" }],
   creator: "Ccowl",
   publisher: "WholeMan",
   alternates: { canonical: "/" },
@@ -51,13 +55,15 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "WholeMan",
     title: TITLE,
-    description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
+    description:
+      "A recovery mission for men. Circles, a free monthly brotherhood call, coaching + the WholeMan Podcast.",
     images: [{ url: "/photos/hero-colorado.jpg", alt: "WholeMan" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
-    description: "A recovery mission for men. Private coaching + the WholeMan Podcast.",
+    description:
+      "A recovery mission for men. Circles, a free monthly brotherhood call, coaching + the WholeMan Podcast.",
     images: ["/photos/hero-colorado.jpg"],
   },
   robots: {

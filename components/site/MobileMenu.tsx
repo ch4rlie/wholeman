@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
-import { BookCall } from "@/components/ui/BookCall";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -43,9 +42,15 @@ export function MobileMenu() {
                 {n.label}
               </Link>
             ))}
-            <BookCall className="mt-4 rounded-md bg-copper px-4 py-3 text-center font-sans text-xs font-semibold uppercase tracking-wide text-ink">
-              Book a call →
-            </BookCall>
+            <a
+              href={siteConfig.lumaUrl}
+              target="_blank"
+              rel="noopener"
+              onClick={() => setOpen(false)}
+              className="mt-4 rounded-md bg-copper px-4 py-3 text-center font-sans text-xs font-semibold uppercase tracking-wide text-ink"
+            >
+              Join the call →
+            </a>
           </div>
         </div>
       )}
