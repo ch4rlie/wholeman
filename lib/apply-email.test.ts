@@ -1,6 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-const sendMock = vi.fn(async () => ({ error: null }));
+const sendMock = vi.fn<(payload: Record<string, unknown>) => Promise<{ error: null }>>(
+  async () => ({ error: null }),
+);
 vi.mock("resend", () => ({
   Resend: vi.fn(() => ({ emails: { send: sendMock } })),
 }));
