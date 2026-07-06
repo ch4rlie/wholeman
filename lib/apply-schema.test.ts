@@ -40,6 +40,7 @@ describe("validateApply", () => {
   });
 
   it("defaults optional priorExperience to empty string", () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { priorExperience: _omit, ...rest } = valid;
     const r = validateApply(rest);
     expect(r.ok).toBe(true);

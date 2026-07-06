@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 
 // Mock IntersectionObserver for Reveal component
-global.IntersectionObserver = class IntersectionObserver {
+class MockIntersectionObserver {
   constructor() {}
   disconnect() {}
   observe() {}
@@ -9,4 +9,9 @@ global.IntersectionObserver = class IntersectionObserver {
     return [];
   }
   unobserve() {}
-} as any;
+  root = null;
+  rootMargin = "";
+  thresholds = [];
+}
+
+globalThis.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
