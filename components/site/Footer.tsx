@@ -13,7 +13,7 @@ export function Footer() {
       <p className="mx-auto mb-4 max-w-2xl font-sans text-xs leading-relaxed text-faint">
         {siteConfig.disclaimer}
       </p>
-      <p className="font-sans text-xs text-faint">© WholeMan {new Date().getFullYear()} · Presence over performance.</p>
+      <p className="font-sans text-xs text-faint">© WholeMan {new Date().getFullYear()} · You were never meant to carry it alone.</p>
     </footer>
   );
 }
