@@ -361,7 +361,7 @@ export const siteConfig = {
     intro:
       "We're in this together, because we believe what we're asking of you: no man should do it alone.",
     people: [
-      { name: "Ccowl", role: "Co-founder", photo: "/photos/ccowl.jpeg", bio: null },
+      { name: "Ccowl", role: "Co-founder", photo: "/photos/ty.jpg", bio: null },
       { name: "Charlie Grove", role: "Co-founder", photo: null, bio: null },
     ] as readonly { name: string; role: string; photo: string | null; bio: string | null }[],
   },

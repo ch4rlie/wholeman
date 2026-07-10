@@ -16,7 +16,7 @@ export function Coaching() {
           <Reveal>
             <div className="relative mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-2xl border border-cardline md:mx-0 md:max-w-md">
               <Image
-                src="/photos/ccowl.jpeg"
+                src="/photos/ty.jpg"
                 alt="Ccowl"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
