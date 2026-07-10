@@ -1,18 +1,28 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import type { ApplyInput } from "@/lib/apply-schema";
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY && process.env.APPLY_TO_EMAIL);
+  return Boolean(
+    process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD && process.env.APPLY_TO_EMAIL,
+  );
 }
 
 export async function sendApplicationEmail(input: ApplyInput): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
+  const user = process.env.GMAIL_USER;
+  const pass = process.env.GMAIL_APP_PASSWORD;
   const to = process.env.APPLY_TO_EMAIL;
-  if (!apiKey || !to) throw new Error("RESEND_API_KEY / APPLY_TO_EMAIL not set");
-  const resend = new Resend(apiKey);
-  const from = process.env.APPLY_FROM_EMAIL ?? "applications@wholeman.org";
-  const { error } = await resend.emails.send({
-    from,
+  if (!user || !pass || !to) {
+    throw new Error("GMAIL_USER / GMAIL_APP_PASSWORD / APPLY_TO_EMAIL not set");
+  }
+  // Google Workspace SMTP; auth via an app password on the sending account.
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user, pass },
+  });
+  await transporter.sendMail({
+    from: `"WholeMan" <${user}>`,
     to: to.split(",").map((s) => s.trim()).filter(Boolean),
     replyTo: input.email,
     subject: `New circle application from ${input.name}`,
@@ -24,5 +34,4 @@ export async function sendApplicationEmail(input: ApplyInput): Promise<void> {
       `Prior men's-work experience: ${input.priorExperience || "(none given)"}`,
     ].join("\n"),
   });
-  if (error) throw new Error(error.message);
 }

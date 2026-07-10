@@ -1,10 +1,16 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-const sendMock = vi.fn<(payload: Record<string, unknown>) => Promise<{ error: null }>>(
-  async () => ({ error: null }),
-);
-vi.mock("resend", () => ({
-  Resend: vi.fn(() => ({ emails: { send: sendMock } })),
+const { sendMailMock, createTransportMock } = vi.hoisted(() => {
+  const sendMailMock = vi.fn<(payload: Record<string, unknown>) => Promise<{ messageId: string }>>(
+    async () => ({ messageId: "test-id" }),
+  );
+  const createTransportMock = vi.fn<
+    (config: Record<string, unknown>) => { sendMail: typeof sendMailMock }
+  >(() => ({ sendMail: sendMailMock }));
+  return { sendMailMock, createTransportMock };
+});
+vi.mock("nodemailer", () => ({
+  default: { createTransport: createTransportMock },
 }));
 
 import { isEmailConfigured, sendApplicationEmail } from "@/lib/apply-email";
@@ -20,22 +26,36 @@ const input = {
 
 describe("apply email", () => {
   beforeEach(() => {
-    sendMock.mockClear();
-    vi.stubEnv("RESEND_API_KEY", "re_test_123");
+    sendMailMock.mockClear();
+    createTransportMock.mockClear();
+    vi.stubEnv("GMAIL_USER", "hello@wholeman.org");
+    vi.stubEnv("GMAIL_APP_PASSWORD", "test-app-password");
     vi.stubEnv("APPLY_TO_EMAIL", "a@example.com,b@example.com");
   });
   afterEach(() => vi.unstubAllEnvs());
 
-  it("is configured only when both env vars are set", () => {
+  it("is configured only when all three env vars are set", () => {
     expect(isEmailConfigured()).toBe(true);
     vi.stubEnv("APPLY_TO_EMAIL", "");
     expect(isEmailConfigured()).toBe(false);
+    vi.stubEnv("APPLY_TO_EMAIL", "a@example.com");
+    vi.stubEnv("GMAIL_APP_PASSWORD", "");
+    expect(isEmailConfigured()).toBe(false);
+  });
+
+  it("connects to Gmail SMTP with the workspace account", async () => {
+    await sendApplicationEmail(input);
+    expect(createTransportMock).toHaveBeenCalledOnce();
+    const cfg = createTransportMock.mock.calls[0][0] as Record<string, unknown>;
+    expect(cfg.host).toBe("smtp.gmail.com");
+    expect(cfg.secure).toBe(true);
+    expect(cfg.auth).toEqual({ user: "hello@wholeman.org", pass: "test-app-password" });
   });
 
   it("sends to all recipients with reply-to set to the applicant", async () => {
     await sendApplicationEmail(input);
-    expect(sendMock).toHaveBeenCalledOnce();
-    const arg = sendMock.mock.calls[0][0] as Record<string, unknown>;
+    expect(sendMailMock).toHaveBeenCalledOnce();
+    const arg = sendMailMock.mock.calls[0][0];
     expect(arg.to).toEqual(["a@example.com", "b@example.com"]);
     expect(arg.replyTo).toBe("test@example.com");
     expect(String(arg.subject)).toContain("Test Man");
@@ -43,7 +63,13 @@ describe("apply email", () => {
   });
 
   it("throws when env vars are missing", async () => {
-    vi.stubEnv("RESEND_API_KEY", "");
+    vi.stubEnv("GMAIL_APP_PASSWORD", "");
     await expect(sendApplicationEmail(input)).rejects.toThrow();
+    expect(sendMailMock).not.toHaveBeenCalled();
+  });
+
+  it("propagates SMTP failures", async () => {
+    sendMailMock.mockRejectedValueOnce(new Error("smtp down"));
+    await expect(sendApplicationEmail(input)).rejects.toThrow("smtp down");
   });
 });
