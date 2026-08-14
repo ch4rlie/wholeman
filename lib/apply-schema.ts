@@ -1,22 +1,25 @@
 import { z } from "zod";
 
+export const INTEREST_OPTIONS = [
+  { value: "join", label: "I'd like to join a men's circle" },
+  { value: "learn", label: "I want to learn more" },
+  { value: "chat", label: "I just want to chat honestly" },
+] as const;
+
+export type Interest = (typeof INTEREST_OPTIONS)[number]["value"];
+
+export const INTEREST_LABELS: Record<Interest, string> = Object.fromEntries(
+  INTEREST_OPTIONS.map((o) => [o.value, o.label]),
+) as Record<Interest, string>;
+
 export const applySchema = z.object({
   name: z.string().min(1, "Your name is required.").max(200, "Please keep your name under 200 characters."),
   email: z
     .string()
     .email("Enter a valid email.")
     .max(254, "Please use a shorter email address."),
-  drawingIn: z
-    .string()
-    .min(1, "Tell us what's drawing you in.")
-    .max(5000, "Please keep this under 5000 characters."),
-  availability: z
-    .string()
-    .min(1, "Let us know your availability.")
-    .max(1000, "Please keep this under 1000 characters."),
-  priorExperience: z.string().max(5000, "Please keep this under 5000 characters.").optional().default(""),
-  // Zod v4: `errorMap` is deprecated; use `error` (string shorthand) instead.
-  agreement: z.literal(true, { error: "Please accept the agreement." }),
+  interest: z.enum(["join", "learn", "chat"], { error: "Let us know what brings you here." }),
+  message: z.string().max(5000, "Please keep this under 5000 characters.").optional().default(""),
 });
 
 export type ApplyInput = z.infer<typeof applySchema>;

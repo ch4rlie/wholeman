@@ -1,60 +1,42 @@
 import { describe, it, expect } from "vitest";
-import { validateApply } from "@/lib/apply-schema";
-
-const valid = {
-  name: "Test Man",
-  email: "test@example.com",
-  drawingIn: "Tired of doing it alone.",
-  availability: "Weekday evenings",
-  priorExperience: "",
-  agreement: true,
-};
+import { validateApply, INTEREST_OPTIONS } from "@/lib/apply-schema";
 
 describe("validateApply", () => {
-  it("accepts a valid application", () => {
-    const r = validateApply(valid);
+  const base = { name: "Sam", email: "sam@example.com", interest: "join" };
+
+  it("accepts a valid interest submission", () => {
+    const r = validateApply({ ...base, message: "hello" });
     expect(r.ok).toBe(true);
-    if (r.ok) expect(r.value.name).toBe("Test Man");
   });
 
-  it("rejects missing required fields with per-field errors", () => {
-    const r = validateApply({ ...valid, name: "", email: "not-an-email" });
+  it("defaults message to empty when omitted", () => {
+    const r = validateApply(base);
+    expect(r.ok).toBe(true);
+    if (r.ok) expect(r.value.message).toBe("");
+  });
+
+  it("rejects an unknown interest", () => {
+    const r = validateApply({ ...base, interest: "nope" });
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.errors.interest).toBeTruthy();
+  });
+
+  it("requires name and email", () => {
+    const r = validateApply({ interest: "chat" });
     expect(r.ok).toBe(false);
     if (!r.ok) {
       expect(r.errors.name).toBeTruthy();
       expect(r.errors.email).toBeTruthy();
-      expect(r.botDetected).toBe(false);
     }
   });
 
-  it("rejects when agreement is not accepted", () => {
-    const r = validateApply({ ...valid, agreement: false });
-    expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors.agreement).toBeTruthy();
-  });
-
-  it("flags the honeypot without field errors", () => {
-    const r = validateApply({ ...valid, website: "spam.example" });
+  it("silently drops honeypot submissions", () => {
+    const r = validateApply({ ...base, website: "spam" });
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.botDetected).toBe(true);
   });
 
-  it("defaults optional priorExperience to empty string", () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { priorExperience: _omit, ...rest } = valid;
-    const r = validateApply(rest);
-    expect(r.ok).toBe(true);
-    if (r.ok) expect(r.value.priorExperience).toBe("");
-  });
-
-  it("rejects an over-limit field with a per-field error", () => {
-    const r = validateApply({ ...valid, drawingIn: "x".repeat(5001) });
-    expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors.drawingIn).toBeTruthy();
-  });
-
-  it("accepts a field at exactly the max length", () => {
-    const r = validateApply({ ...valid, drawingIn: "x".repeat(5000) });
-    expect(r.ok).toBe(true);
+  it("exposes three interest options in order", () => {
+    expect(INTEREST_OPTIONS.map((o) => o.value)).toEqual(["join", "learn", "chat"]);
   });
 });
