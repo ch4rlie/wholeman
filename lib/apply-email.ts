@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import type { ApplyInput } from "@/lib/apply-schema";
+import { INTEREST_LABELS } from "@/lib/apply-schema";
 
 export function isEmailConfigured(): boolean {
   return Boolean(
@@ -25,13 +26,12 @@ export async function sendApplicationEmail(input: ApplyInput): Promise<void> {
     from: `"WholeMan" <${user}>`,
     to: to.split(",").map((s) => s.trim()).filter(Boolean),
     replyTo: input.email,
-    subject: `New circle application from ${input.name}`,
+    subject: `New circle interest from ${input.name}`,
     text: [
       `Name: ${input.name}`,
       `Email: ${input.email}`,
-      `What's drawing you in: ${input.drawingIn}`,
-      `Availability: ${input.availability}`,
-      `Prior men's-work experience: ${input.priorExperience || "(none given)"}`,
+      `What brings them here: ${INTEREST_LABELS[input.interest]}`,
+      `Message: ${input.message || "(none given)"}`,
     ].join("\n"),
   });
 }

@@ -18,10 +18,8 @@ import { isEmailConfigured, sendApplicationEmail } from "@/lib/apply-email";
 const input = {
   name: "Test Man",
   email: "test@example.com",
-  drawingIn: "Tired of doing it alone.",
-  availability: "Weekday evenings",
-  priorExperience: "",
-  agreement: true as const,
+  interest: "join" as const,
+  message: "Tired of doing it alone.",
 };
 
 describe("apply email", () => {
@@ -59,7 +57,8 @@ describe("apply email", () => {
     expect(arg.to).toEqual(["a@example.com", "b@example.com"]);
     expect(arg.replyTo).toBe("test@example.com");
     expect(String(arg.subject)).toContain("Test Man");
-    expect(String(arg.text)).toContain("Weekday evenings");
+    expect(String(arg.text)).toContain("Tired of doing it alone.");
+    expect(String(arg.text)).toContain("join a men's circle");
   });
 
   it("throws when env vars are missing", async () => {
