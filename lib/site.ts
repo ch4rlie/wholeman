@@ -1,8 +1,8 @@
 export const siteConfig = {
   calendlyUrl:
     process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/wholeman/intro-call",
-  lumaUrl: "https://luma.com/ryyv3hx9",
-  nextCall: { date: "July 23", time: "6pm PT / 9pm ET" },
+  lumaUrl: "https://luma.com/xvl6pn8s",
+  nextCall: { date: "Sept 3", time: "7pm PT / 10pm ET" },
   // NOTE: confirm this mailbox exists before launch (used as mailto fallback on the apply form)
   contactEmail: "hello@wholeman.org",
   nav: [
