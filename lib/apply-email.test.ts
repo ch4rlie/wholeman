@@ -28,15 +28,15 @@ describe("apply email", () => {
     createTransportMock.mockClear();
     vi.stubEnv("GMAIL_USER", "hello@wholeman.org");
     vi.stubEnv("GMAIL_APP_PASSWORD", "test-app-password");
-    vi.stubEnv("APPLY_TO_EMAIL", "a@example.com,b@example.com");
+    vi.stubEnv("EMAIL_NOTIFICATIONS", "a@example.com,b@example.com");
   });
   afterEach(() => vi.unstubAllEnvs());
 
   it("is configured only when all three env vars are set", () => {
     expect(isEmailConfigured()).toBe(true);
-    vi.stubEnv("APPLY_TO_EMAIL", "");
+    vi.stubEnv("EMAIL_NOTIFICATIONS", "");
     expect(isEmailConfigured()).toBe(false);
-    vi.stubEnv("APPLY_TO_EMAIL", "a@example.com");
+    vi.stubEnv("EMAIL_NOTIFICATIONS", "a@example.com");
     vi.stubEnv("GMAIL_APP_PASSWORD", "");
     expect(isEmailConfigured()).toBe(false);
   });

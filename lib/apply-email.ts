@@ -4,16 +4,16 @@ import { INTEREST_LABELS } from "@/lib/apply-schema";
 
 export function isEmailConfigured(): boolean {
   return Boolean(
-    process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD && process.env.APPLY_TO_EMAIL,
+    process.env.GMAIL_USER && process.env.GMAIL_APP_PASSWORD && process.env.EMAIL_NOTIFICATIONS,
   );
 }
 
 export async function sendApplicationEmail(input: ApplyInput): Promise<void> {
   const user = process.env.GMAIL_USER;
   const pass = process.env.GMAIL_APP_PASSWORD;
-  const to = process.env.APPLY_TO_EMAIL;
+  const to = process.env.EMAIL_NOTIFICATIONS;
   if (!user || !pass || !to) {
-    throw new Error("GMAIL_USER / GMAIL_APP_PASSWORD / APPLY_TO_EMAIL not set");
+    throw new Error("GMAIL_USER / GMAIL_APP_PASSWORD / EMAIL_NOTIFICATIONS not set");
   }
   // Google Workspace SMTP; auth via an app password on the sending account.
   const transporter = nodemailer.createTransport({
