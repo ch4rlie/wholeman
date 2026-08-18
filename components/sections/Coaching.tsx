@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { BookCall } from "@/components/ui/BookCall";
+import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 
 export function Coaching() {
@@ -47,10 +47,13 @@ export function Coaching() {
                 </li>
               ))}
             </ul>
-            <BookCall className="inline-block rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110">
-              Book your free intro call →
-            </BookCall>
-            <p className="mt-3 font-sans text-[11px] text-faint">Opens calendar · 30 minutes · no pressure</p>
+            <Link
+              href="/apply"
+              className="inline-block rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"
+            >
+              Ask about coaching →
+            </Link>
+            <p className="mt-3 font-sans text-[11px] text-faint">Free 30-minute intro call · we reply personally</p>
           </Reveal>
         </div>
       </Container>

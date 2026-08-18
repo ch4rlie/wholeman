@@ -41,6 +41,14 @@ describe("apply email", () => {
     expect(isEmailConfigured()).toBe(false);
   });
 
+  it("marks the subject as coaching only for coaching enquiries", async () => {
+    await sendApplicationEmail({ ...input, interest: "coaching" });
+    expect(sendMailMock.mock.calls[0][0].subject).toMatch(/^New coaching interest from /);
+    sendMailMock.mockClear();
+    await sendApplicationEmail({ ...input, interest: "join" });
+    expect(sendMailMock.mock.calls[0][0].subject).toMatch(/^New circle interest from /);
+  });
+
   it("connects to Gmail SMTP with the workspace account", async () => {
     await sendApplicationEmail(input);
     expect(createTransportMock).toHaveBeenCalledOnce();

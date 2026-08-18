@@ -36,7 +36,12 @@ describe("validateApply", () => {
     if (!r.ok) expect(r.botDetected).toBe(true);
   });
 
-  it("exposes three interest options in order", () => {
-    expect(INTEREST_OPTIONS.map((o) => o.value)).toEqual(["join", "learn", "chat"]);
+  it("exposes four interest options in order", () => {
+    expect(INTEREST_OPTIONS.map((o) => o.value)).toEqual(["join", "learn", "chat", "coaching"]);
+  });
+
+  it("accepts coaching as an interest", () => {
+    const r = validateApply({ name: "A", email: "a@b.com", interest: "coaching" });
+    expect(r.ok).toBe(true);
   });
 });

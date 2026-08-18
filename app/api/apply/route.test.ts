@@ -14,10 +14,8 @@ const configuredMock = vi.mocked(isEmailConfigured);
 const valid = {
   name: "Test Man",
   email: "test@example.com",
-  drawingIn: "Tired of doing it alone.",
-  availability: "Weekday evenings",
-  priorExperience: "",
-  agreement: true,
+  interest: "join",
+  message: "Tired of doing it alone.",
 };
 
 function req(body: unknown) {

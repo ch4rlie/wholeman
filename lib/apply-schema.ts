@@ -4,6 +4,7 @@ export const INTEREST_OPTIONS = [
   { value: "join", label: "I'd like to join a men's circle" },
   { value: "learn", label: "I want to learn more" },
   { value: "chat", label: "I just want to chat honestly" },
+  { value: "coaching", label: "I'm interested in 1:1 coaching" },
 ] as const;
 
 export type Interest = (typeof INTEREST_OPTIONS)[number]["value"];
@@ -18,7 +19,7 @@ export const applySchema = z.object({
     .string()
     .email("Enter a valid email.")
     .max(254, "Please use a shorter email address."),
-  interest: z.enum(["join", "learn", "chat"], { error: "Let us know what brings you here." }),
+  interest: z.enum(["join", "learn", "chat", "coaching"], { error: "Let us know what brings you here." }),
   message: z.string().max(5000, "Please keep this under 5000 characters.").optional().default(""),
 });
 

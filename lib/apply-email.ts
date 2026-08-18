@@ -26,7 +26,7 @@ export async function sendApplicationEmail(input: ApplyInput): Promise<void> {
     from: `"WholeMan" <${user}>`,
     to: to.split(",").map((s) => s.trim()).filter(Boolean),
     replyTo: input.email,
-    subject: `New circle interest from ${input.name}`,
+    subject: `New ${input.interest === "coaching" ? "coaching" : "circle"} interest from ${input.name}`,
     text: [
       `Name: ${input.name}`,
       `Email: ${input.email}`,
