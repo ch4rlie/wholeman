@@ -2,9 +2,11 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { siteConfig } from "@/lib/site";
+import { formatCallDate, nextCallStart } from "@/lib/call-schedule";
 
-export function MonthlyCall() {
-  const { brotherhoodCall, nextCall, lumaUrl } = siteConfig;
+export function BrotherhoodCall() {
+  const { brotherhoodCall, callSchedule, lumaUrl } = siteConfig;
+  const nextDate = formatCallDate(nextCallStart());
   return (
     <section className="bg-ink py-16 md:py-20">
       <Container>
@@ -18,7 +20,8 @@ export function MonthlyCall() {
             <div><dt className="inline text-copper">Cost: </dt><dd className="inline">{brotherhoodCall.cost}</dd></div>
             <div><dt className="inline text-copper">Who: </dt><dd className="inline">{brotherhoodCall.who}</dd></div>
             <div><dt className="inline text-copper">Where: </dt><dd className="inline">{brotherhoodCall.where}</dd></div>
-            <div><dt className="inline text-copper">Next call: </dt><dd className="inline">{nextCall.date} · {nextCall.time}</dd></div>
+            <div><dt className="inline text-copper">When: </dt><dd className="inline">{callSchedule.cadence} · {callSchedule.time}</dd></div>
+            <div><dt className="inline text-copper">Next call: </dt><dd className="inline">{nextDate}</dd></div>
           </dl>
           <a
             href={lumaUrl}

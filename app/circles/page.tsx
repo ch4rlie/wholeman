@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Container } from "@/components/ui/Container";
-import { MonthlyCall } from "@/components/circles/MonthlyCall";
+import { BrotherhoodCall } from "@/components/circles/BrotherhoodCall";
 import { CircleOffer } from "@/components/circles/CircleOffer";
 import { Agreements } from "@/components/circles/Agreements";
 import { WhoFor } from "@/components/circles/WhoFor";
@@ -14,8 +14,11 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Circles",
   description:
-    "WholeMan circles — small, consistent groups of men who tell the truth, own their lives, and have each other's backs. Start with the free monthly brotherhood call.",
+    "WholeMan circles — small, consistent groups of men who tell the truth, own their lives, and have each other's backs. Start with the free brotherhood call, every other Thursday.",
 };
+
+// The next call date is computed at render time; refresh hourly so it rolls over.
+export const revalidate = 3600;
 
 export default function CirclesPage() {
   return (
@@ -34,7 +37,7 @@ export default function CirclesPage() {
             </p>
           </Container>
         </section>
-        <MonthlyCall />
+        <BrotherhoodCall />
         <CircleOffer />
         <Agreements />
         <WhoFor />

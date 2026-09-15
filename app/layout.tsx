@@ -19,7 +19,7 @@ const sans = Inter({
 const SITE_URL = "https://wholeman.org";
 const TITLE = "WholeMan | You were never meant to carry it alone";
 const DESCRIPTION =
-  "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Men's circles, a free monthly brotherhood call, private coaching, and the WholeMan Podcast.";
+  "A recovery mission calling men out of shame, fragmentation, and despair — back into courageous hope, sacred self-love, and full integration. Men's circles, a free biweekly brotherhood call, private coaching, and the WholeMan Podcast.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -56,14 +56,14 @@ export const metadata: Metadata = {
     siteName: "WholeMan",
     title: TITLE,
     description:
-      "A recovery mission for men. Circles, a free monthly brotherhood call, coaching + the WholeMan Podcast.",
+      "A recovery mission for men. Circles, a free biweekly brotherhood call, coaching + the WholeMan Podcast.",
     images: [{ url: "/photos/hero-colorado.jpg", alt: "WholeMan" }],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description:
-      "A recovery mission for men. Circles, a free monthly brotherhood call, coaching + the WholeMan Podcast.",
+      "A recovery mission for men. Circles, a free biweekly brotherhood call, coaching + the WholeMan Podcast.",
     images: ["/photos/hero-colorado.jpg"],
   },
   robots: {

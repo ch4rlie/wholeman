@@ -1,6 +1,7 @@
 export const siteConfig = {
-  lumaUrl: "https://luma.com/xvl6pn8s",
-  nextCall: { date: "Sept 3", time: "7pm PT / 10pm ET" },
+  lumaUrl: "https://luma.com/knenag9z",
+  // Next date is computed in lib/call-schedule.ts
+  callSchedule: { cadence: "Every other Thursday", time: "7pm PT / 10pm ET" },
   // NOTE: confirm this mailbox exists before launch (used as mailto fallback on the apply form)
   contactEmail: "hello@wholeman.org",
   nav: [
@@ -92,9 +93,9 @@ export const siteConfig = {
     closer: "Because you deserve a whole life.",
   },
   brotherhoodCall: {
-    header: "Start here: the free monthly brotherhood call.",
+    header: "Start here: the free brotherhood call.",
     body:
-      "Once a month, men gather on a call to get something off their chest, hear from other men, and leave a little less alone. No experience needed. No pressure to talk before you're ready. Come exactly as you are.",
+      "Every other Thursday, men gather on a call to get something off their chest, hear from other men, and leave a little less alone. No experience needed. No pressure to talk before you're ready. Come exactly as you are.",
     cost: "Free",
     who: "Any man who's tired of doing it alone",
     where: "Zoom (link after you RSVP)",

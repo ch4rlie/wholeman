@@ -4,9 +4,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EmberBackground } from "@/components/ui/EmberBackground";
 import { siteConfig } from "@/lib/site";
+import { formatCallDate, nextCallStart } from "@/lib/call-schedule";
 
 export function Circles() {
-  const { circles, brotherhoodCall, nextCall, lumaUrl } = siteConfig;
+  const { circles, brotherhoodCall, callSchedule, lumaUrl } = siteConfig;
+  const nextDate = formatCallDate(nextCallStart());
   return (
     <section id="circles" className="relative isolate overflow-hidden border-t border-white/5 py-16 md:py-24">
       <EmberBackground />
@@ -37,9 +39,9 @@ export function Circles() {
                 rel="noopener"
                 className="mt-6 inline-block self-start rounded-md bg-copper px-6 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"
               >
-                RSVP for {nextCall.date} — free
+                RSVP for {nextDate} — free
               </a>
-              <p className="mt-2 font-sans text-[11px] text-faint">{nextCall.date} · {nextCall.time}</p>
+              <p className="mt-2 font-sans text-[11px] text-faint">{callSchedule.cadence} · {callSchedule.time}</p>
             </div>
           </Reveal>
 
