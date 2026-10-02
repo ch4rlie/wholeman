@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
+import { nextCall } from "@/lib/call-schedule";
 
 export function Hero() {
   return (
@@ -21,7 +22,7 @@ export function Hero() {
         <p className="max-w-2xl font-sans text-base leading-relaxed text-muted">{siteConfig.hero.mission}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <a
-            href={siteConfig.lumaUrl}
+            href={nextCall().url}
             target="_blank"
             rel="noopener"
             className="rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"

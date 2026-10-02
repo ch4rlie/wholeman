@@ -6,6 +6,9 @@ import { Coaching } from "@/components/sections/Coaching";
 
 export const metadata: Metadata = { title: "Coaching" };
 
+// Nav links to the next brotherhood call, so refresh hourly as the schedule rolls over.
+export const revalidate = 3600;
+
 export default function CoachingPage() {
   return (
     <>

@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/site";
+import { nextCall } from "@/lib/call-schedule";
 import { BrandLink } from "@/components/site/BrandLink";
 import { MobileMenu } from "@/components/site/MobileMenu";
 import Link from "next/link";
@@ -21,7 +22,7 @@ export function Nav() {
         </div>
 
         <a
-          href={siteConfig.lumaUrl}
+          href={nextCall().url}
           target="_blank"
           rel="noopener"
           className="hidden rounded-md bg-copper px-4 py-2 font-sans text-xs font-semibold tracking-wide text-ink transition hover:brightness-110 md:inline-block"

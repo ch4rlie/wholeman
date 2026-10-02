@@ -2,11 +2,12 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { siteConfig } from "@/lib/site";
-import { formatCallDate, nextCallStart } from "@/lib/call-schedule";
+import { formatCallDate, nextCall } from "@/lib/call-schedule";
 
 export function BrotherhoodCall() {
-  const { brotherhoodCall, callSchedule, lumaUrl } = siteConfig;
-  const nextDate = formatCallDate(nextCallStart());
+  const { brotherhoodCall, callSchedule } = siteConfig;
+  const session = nextCall();
+  const nextDate = formatCallDate(session);
   return (
     <section className="bg-ink py-16 md:py-20">
       <Container>
@@ -24,7 +25,7 @@ export function BrotherhoodCall() {
             <div><dt className="inline text-copper">Next call: </dt><dd className="inline">{nextDate}</dd></div>
           </dl>
           <a
-            href={lumaUrl}
+            href={session.url}
             target="_blank"
             rel="noopener"
             className="mt-7 inline-block rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Circles } from "./Circles";
 import { siteConfig } from "@/lib/site";
+import { nextCall } from "@/lib/call-schedule";
 
 describe("Circles section", () => {
   it("renders the headline and both offers", () => {
@@ -15,7 +16,7 @@ describe("Circles section", () => {
 
   it("links the RSVP to Luma and the detail link to /circles", () => {
     render(<Circles />);
-    expect(screen.getByRole("link", { name: /rsvp/i })).toHaveAttribute("href", siteConfig.lumaUrl);
+    expect(screen.getByRole("link", { name: /rsvp/i })).toHaveAttribute("href", nextCall().url);
     expect(screen.getByRole("link", { name: /explore the circles/i })).toHaveAttribute("href", "/circles");
   });
 });

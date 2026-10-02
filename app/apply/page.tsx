@@ -6,6 +6,9 @@ import { ApplyForm } from "@/components/circles/ApplyForm";
 
 export const metadata: Metadata = { title: "Start the conversation" };
 
+// Nav links to the next brotherhood call, so refresh hourly as the schedule rolls over.
+export const revalidate = 3600;
+
 export default function ApplyPage() {
   return (
     <>

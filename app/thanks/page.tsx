@@ -6,6 +6,9 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = { title: "Thank you" };
 
+// Nav links to the next brotherhood call, so refresh hourly as the schedule rolls over.
+export const revalidate = 3600;
+
 export default function ThanksPage() {
   return (
     <>

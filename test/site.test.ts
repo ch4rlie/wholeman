@@ -35,7 +35,6 @@ describe("siteConfig circles content", () => {
   });
 
   it("has the brotherhood call config", () => {
-    expect(siteConfig.lumaUrl).toMatch(/^https:\/\/luma\.com\//);
     expect(siteConfig.callSchedule.cadence).toBe("Every other Thursday");
     expect(siteConfig.brotherhoodCall.cost).toBe("Free");
   });

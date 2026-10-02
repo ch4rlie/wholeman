@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "The WholeMan story — a recovery mission for men, led by Charlie Grove and Ccowl.",
 };
 
+// Nav links to the next brotherhood call, so refresh hourly as the schedule rolls over.
+export const revalidate = 3600;
+
 export default function AboutPage() {
   return (
     <>

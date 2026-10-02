@@ -4,11 +4,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EmberBackground } from "@/components/ui/EmberBackground";
 import { siteConfig } from "@/lib/site";
-import { formatCallDate, nextCallStart } from "@/lib/call-schedule";
+import { formatCallDate, nextCall } from "@/lib/call-schedule";
 
 export function Circles() {
-  const { circles, brotherhoodCall, callSchedule, lumaUrl } = siteConfig;
-  const nextDate = formatCallDate(nextCallStart());
+  const { circles, brotherhoodCall, callSchedule } = siteConfig;
+  const session = nextCall();
+  const nextDate = formatCallDate(session);
   return (
     <section id="circles" className="relative isolate overflow-hidden border-t border-white/5 py-16 md:py-24">
       <EmberBackground />
@@ -34,7 +35,7 @@ export function Circles() {
                 <div><dt className="inline text-copper">Where: </dt><dd className="inline">{brotherhoodCall.where}</dd></div>
               </dl>
               <a
-                href={lumaUrl}
+                href={session.url}
                 target="_blank"
                 rel="noopener"
                 className="mt-6 inline-block self-start rounded-md bg-copper px-6 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"

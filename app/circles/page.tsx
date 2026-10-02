@@ -10,6 +10,7 @@ import { WhoFor } from "@/components/circles/WhoFor";
 import { CirclesFaq } from "@/components/circles/CirclesFaq";
 import { EmberBackground } from "@/components/ui/EmberBackground";
 import { siteConfig } from "@/lib/site";
+import { nextCall } from "@/lib/call-schedule";
 
 export const metadata: Metadata = {
   title: "Circles",
@@ -50,7 +51,7 @@ export default function CirclesPage() {
             <p className="mt-4 font-sans text-[15px] text-muted">{siteConfig.finalCta.subhead}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href={siteConfig.lumaUrl}
+                href={nextCall().url}
                 target="_blank"
                 rel="noopener"
                 className="rounded-md bg-copper px-7 py-3 font-sans text-sm font-semibold tracking-wide text-ink transition hover:brightness-110"

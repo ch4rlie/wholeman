@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
+import { nextCall } from "@/lib/call-schedule";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export function MobileMenu() {
               </Link>
             ))}
             <a
-              href={siteConfig.lumaUrl}
+              href={nextCall().url}
               target="_blank"
               rel="noopener"
               onClick={() => setOpen(false)}

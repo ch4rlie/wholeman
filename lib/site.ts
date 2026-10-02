@@ -1,6 +1,5 @@
 export const siteConfig = {
-  lumaUrl: "https://luma.com/knenag9z",
-  // Next date is computed in lib/call-schedule.ts
+  // RSVP links + next date live in lib/call-schedule.ts (one Luma event per occurrence)
   callSchedule: { cadence: "Every other Thursday", time: "7pm PT / 10pm ET" },
   // NOTE: confirm this mailbox exists before launch (used as mailto fallback on the apply form)
   contactEmail: "hello@wholeman.org",
